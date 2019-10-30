@@ -1,0 +1,57 @@
+{
+  "name": "vscode-github-actions",
+  "displayName": "Github Actions",
+  "description": "YAML schema validation and auto-completion for GitHub Actions.",
+  "version": "2.0.0",
+  "publisher": "me.dutour.mathieu",
+  "engines": {
+    "vscode": "^1.25.0"
+  },
+  "license": "MIT",
+  "categories": [
+    "Snippets",
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "yaml",
+    "github",
+    "actions",
+    "workflow"
+  ],
+  "icon": "images/logo.png",
+  "bugs": {
+    "url": "https://github.com/Lona/vscode-github-actions/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lona/vscode-github-actions.git"
+  },
+  "activationEvents": [
+    "onLanguage:yaml"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {},
+  "extensionDependencies": [
+    "redhat.vscode-yaml"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "dependencies": {
+    "fuse.js": "^3.4.5",
+    "js-yaml": "^3.13.1",
+    "vscode-extension-telemetry": "^0.1.2"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^3.12.1",
+    "@types/node": "^12.0.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4",
+    "vscode": "^1.1.36"
+  }
+}

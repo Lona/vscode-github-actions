@@ -1,0 +1,6 @@
+name: Step
+label: GitHub Actions Step
+description: Create a GitHub Actions Step
+body: |2
+  - name: $1
+    run: $2

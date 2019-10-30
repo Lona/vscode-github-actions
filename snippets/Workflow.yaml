@@ -1,0 +1,13 @@
+name: GitHub Actions Workflow
+label: GitHub Actions Workflow
+description: Create an GitHub Actions Workflow
+body: |2
+  on: $1
+
+  jobs:
+    $2:
+      runs-on: $3
+
+      steps:
+        - name: $4
+          run: $5
