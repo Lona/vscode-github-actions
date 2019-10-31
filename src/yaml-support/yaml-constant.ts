@@ -14,3 +14,11 @@ export const WORKFLOW_SCHEMA_FILE = Uri.file(
 ).toString();
 
 export const WORKFLOW_FILE_GLOBAL_PATTERN = "/.github/workflows/*.yml";
+
+export const ACTION_SCHEMA_FILENAME = "action.schema.json";
+
+export const ACTION_SCHEMA_FILE = Uri.file(
+  join(__dirname, `../../../schemas/${ACTION_SCHEMA_FILENAME}`)
+).toString();
+
+export const ACTION_FILE_GLOBAL_PATTERN = "/action.yml";

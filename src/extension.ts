@@ -6,6 +6,8 @@ import {
   workspace
 } from "vscode";
 import {
+  ACTION_FILE_GLOBAL_PATTERN,
+  ACTION_SCHEMA_FILE,
   WORKFLOW_FILE_GLOBAL_PATTERN,
   WORKFLOW_SCHEMA_FILE,
   YAML_SCHEMA_CONFIG_NAME_OF_VSCODE_YAML_EXTENSION
@@ -27,14 +29,14 @@ export async function activate(context: ExtensionContext) {
       new YamlCompletionProvider()
     )
   ];
-  await addTocSchemaToConfig();
+  await addSchemasToConfig();
   await registerYamlSchemaSupport();
   subscriptions.forEach(element => {
     context.subscriptions.push(element);
   }, this);
 }
 
-async function addTocSchemaToConfig() {
+async function addSchemasToConfig() {
   const config = workspace
     .getConfiguration()
     .inspect(YAML_SCHEMA_CONFIG_NAME_OF_VSCODE_YAML_EXTENSION);
@@ -44,12 +46,11 @@ async function addTocSchemaToConfig() {
     ConfigurationTarget.Global,
     config.globalValue
   );
-
-  // this code should be mantian for two verison
-  await removeSchemaFromConfigAtScope(
-    WORKFLOW_FILE_GLOBAL_PATTERN,
-    ConfigurationTarget.Workspace,
-    config.workspaceValue
+  await addSchemaToConfigAtScope(
+    ACTION_SCHEMA_FILE,
+    ACTION_FILE_GLOBAL_PATTERN,
+    ConfigurationTarget.Global,
+    config.globalValue
   );
 }
 
@@ -64,7 +65,7 @@ async function addSchemaToConfigAtScope(
     newValue = Object.assign({}, valueAtScope);
   }
   Object.keys(newValue).forEach(configKey => {
-    var configValue = newValue[configKey];
+    const configValue = newValue[configKey];
     if (value === configValue) {
       delete newValue[configKey];
     }
@@ -75,28 +76,6 @@ async function addSchemaToConfigAtScope(
     .update(YAML_SCHEMA_CONFIG_NAME_OF_VSCODE_YAML_EXTENSION, newValue, scope);
 }
 
-async function removeSchemaFromConfigAtScope(
-  value: string,
-  scope: ConfigurationTarget,
-  valueAtScope: any
-) {
-  if (!valueAtScope) {
-    return;
-  }
-  let newValue: any = {};
-  if (valueAtScope) {
-    newValue = Object.assign({}, valueAtScope);
-  }
-  Object.keys(newValue).forEach(configKey => {
-    var configValue = newValue[configKey];
-    if (value === configValue) {
-      delete newValue[configKey];
-    }
-  });
-  await workspace
-    .getConfiguration()
-    .update(YAML_SCHEMA_CONFIG_NAME_OF_VSCODE_YAML_EXTENSION, newValue, scope);
+export function deactivate() {
+  // this method is called when your extension is deactivated
 }
-
-// this method is called when your extension is deactivated
-export function deactivate() {}
