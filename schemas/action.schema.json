@@ -79,7 +79,7 @@
           "type": "string"
         },
         "post-if": {
-          "description": "You can use the `post-if` conditional to prevent the `post` file from running unless a condition is met. You can use any supported context and expression to create a conditional.\n\nExpressions in a `post-if` conditional do not require the `${{ }}` syntax. For more information, see [Contexts and expression syntax for GitHub Actions](https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions).",
+          "description": "You can use the `post-if` conditional to prevent the `post` file from running unless a condition is met. You can use any supported context and expression to create a conditional.\n\nExpressions in a `post-if` conditional do not require the `${{ }}` syntax. For more information, see https://help.github.com/en/articles/contexts-and-expression-syntax-for-github-actions.",
           "type": "string"
         },
         "image": {
@@ -106,7 +106,7 @@
       }
     },
     "branding": {
-      "description": "You can use a color and Feather icon to create a badge to personalize and distinguish your action in GitHub Marketplace. For more information, see [GitHub Actions in the GitHub Marketplace](https://developer.github.com/marketplace/actions/) in the GitHub Developer documentation.",
+      "description": "You can use a color and Feather icon to create a badge to personalize and distinguish your action in GitHub Marketplace. For more information, see https://developer.github.com/marketplace/actions/.",
       "additionalProperties": false,
       "properties": {
         "color": {
@@ -384,7 +384,7 @@
             "zoom-in",
             "zoom-out"
           ],
-          "description": "The name of the [Feather](https://feathericons.com/) icon to use."
+          "description": "The name of the Feather icon to use."
         }
       }
     }

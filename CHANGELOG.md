@@ -1,5 +1,9 @@
 # Change Log
 
+## **2.2.1**
+
+- Links don't actually work properly
+
 ## **2.2.0**
 
 - Add `post` field in action schema
