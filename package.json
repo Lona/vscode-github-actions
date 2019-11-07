@@ -44,8 +44,7 @@
   },
   "dependencies": {
     "fuse.js": "^3.4.5",
-    "js-yaml": "^3.13.1",
-    "vscode-extension-telemetry": "^0.1.2"
+    "js-yaml": "^3.13.1"
   },
   "devDependencies": {
     "@types/js-yaml": "^3.12.1",
