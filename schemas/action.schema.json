@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "version": "2.1.0",
+  "version": "2.2.2",
   "id": "https://github.com/Lona/vscode-github-actions/schemas/action.schema.json",
   "title": "GitHub Action",
   "description": "The schema for a GitHub Action. For more information, see [Metadata syntax for GitHub Actions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/metadata-syntax-for-github-actions).",

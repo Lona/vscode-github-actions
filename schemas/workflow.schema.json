@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "version": "2.1.0",
+  "version": "2.2.2",
   "id": "https://github.com/Lona/vscode-github-actions/schemas/workflow.schema.json",
   "title": "GitHub Action Workflow",
   "description": "The schema for a GitHub Action Workflow. For more information, see https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions.",
@@ -51,79 +51,86 @@
           },
           "patternProperties": {
             "^([a-z_])+$": {
-              "type": "object",
-              "properties": {
-                "types": {
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "type": "array",
-                  "minItems": 1,
-                  "description": "Selects the types of activity that will trigger a workflow run. Most GitHub events are triggered by more than one type of activity. For example, the event for the release resource is triggered when a release is `published`, `unpublished`, `created`, `edited`, `deleted`, or `prereleased`. The `types` keyword enables you to narrow down activity that causes the workflow to run. When only one activity type triggers a webhook event, the `types` keyword is unnecessary.\n\nYou can use an array of event `types`. For more information about each event and their activity types, see https://help.github.com/en/articles/events-that-trigger-workflows.",
-                  "uniqueItems": true
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "types": {
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": "array",
+                      "minItems": 1,
+                      "description": "Selects the types of activity that will trigger a workflow run. Most GitHub events are triggered by more than one type of activity. For example, the event for the release resource is triggered when a release is `published`, `unpublished`, `created`, `edited`, `deleted`, or `prereleased`. The `types` keyword enables you to narrow down activity that causes the workflow to run. When only one activity type triggers a webhook event, the `types` keyword is unnecessary.\n\nYou can use an array of event `types`. For more information about each event and their activity types, see https://help.github.com/en/articles/events-that-trigger-workflows.",
+                      "uniqueItems": true
+                    },
+                    "branches": {
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": "array",
+                      "minItems": 1,
+                      "description": "When using the `push` and `pull_request` events, you can configure a workflow to run on specific branches or tags. If you only define only `tags` or only `branches`, the workflow won't run for events affecting the undefined Git ref.\n\nThe `branches`, `branches-ignore`, `tags`, and `tags-ignore` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one branch or tag name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
+                      "uniqueItems": true
+                    },
+                    "branches-ignore": {
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": "array",
+                      "minItems": 1,
+                      "description": "When using the `push` and `pull_request` events, you can configure a workflow to run on specific branches or tags. If you only define only `tags` or only `branches`, the workflow won't run for events affecting the undefined Git ref.\n\nThe `branches`, `branches-ignore`, `tags`, and `tags-ignore` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one branch or tag name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
+                      "uniqueItems": true
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": "array",
+                      "minItems": 1,
+                      "description": "When using the `push` and `pull_request` events, you can configure a workflow to run on specific branches or tags. If you only define only `tags` or only `branches`, the workflow won't run for events affecting the undefined Git ref.\n\nThe `branches`, `branches-ignore`, `tags`, and `tags-ignore` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one branch or tag name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
+                      "uniqueItems": true
+                    },
+                    "tags-ignore": {
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": "array",
+                      "minItems": 1,
+                      "description": "When using the `push` and `pull_request` events, you can configure a workflow to run on specific branches or tags. If you only define only `tags` or only `branches`, the workflow won't run for events affecting the undefined Git ref.\n\nThe `branches`, `branches-ignore`, `tags`, and `tags-ignore` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one branch or tag name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
+                      "uniqueItems": true
+                    },
+                    "paths": {
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": "array",
+                      "minItems": 1,
+                      "description": "When using the `push` and `pull_request` events, you can configure a workflow to run when at least one file does not match `paths-ignore` or at least one modified file matches the configured `paths`. Path filters are not evaluated for pushes to tags.\n\nThe `paths-ignore` and `paths` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one path name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
+                      "uniqueItems": true
+                    },
+                    "paths-ignore": {
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": "array",
+                      "minItems": 1,
+                      "description": "When using the `push` and `pull_request` events, you can configure a workflow to run when at least one file does not match `paths-ignore` or at least one modified file matches the configured `paths`. Path filters are not evaluated for pushes to tags.\n\nThe `paths-ignore` and `paths` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one path name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
+                      "uniqueItems": true
+                    }
+                  }
                 },
-                "branches": {
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "type": "array",
-                  "minItems": 1,
-                  "description": "When using the `push` and `pull_request` events, you can configure a workflow to run on specific branches or tags. If you only define only `tags` or only `branches`, the workflow won't run for events affecting the undefined Git ref.\n\nThe `branches`, `branches-ignore`, `tags`, and `tags-ignore` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one branch or tag name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
-                  "uniqueItems": true
-                },
-                "branches-ignore": {
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "type": "array",
-                  "minItems": 1,
-                  "description": "When using the `push` and `pull_request` events, you can configure a workflow to run on specific branches or tags. If you only define only `tags` or only `branches`, the workflow won't run for events affecting the undefined Git ref.\n\nThe `branches`, `branches-ignore`, `tags`, and `tags-ignore` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one branch or tag name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
-                  "uniqueItems": true
-                },
-                "tags": {
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "type": "array",
-                  "minItems": 1,
-                  "description": "When using the `push` and `pull_request` events, you can configure a workflow to run on specific branches or tags. If you only define only `tags` or only `branches`, the workflow won't run for events affecting the undefined Git ref.\n\nThe `branches`, `branches-ignore`, `tags`, and `tags-ignore` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one branch or tag name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
-                  "uniqueItems": true
-                },
-                "tags-ignore": {
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "type": "array",
-                  "minItems": 1,
-                  "description": "When using the `push` and `pull_request` events, you can configure a workflow to run on specific branches or tags. If you only define only `tags` or only `branches`, the workflow won't run for events affecting the undefined Git ref.\n\nThe `branches`, `branches-ignore`, `tags`, and `tags-ignore` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one branch or tag name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
-                  "uniqueItems": true
-                },
-                "paths": {
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "type": "array",
-                  "minItems": 1,
-                  "description": "When using the `push` and `pull_request` events, you can configure a workflow to run when at least one file does not match `paths-ignore` or at least one modified file matches the configured `paths`. Path filters are not evaluated for pushes to tags.\n\nThe `paths-ignore` and `paths` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one path name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
-                  "uniqueItems": true
-                },
-                "paths-ignore": {
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "type": "array",
-                  "minItems": 1,
-                  "description": "When using the `push` and `pull_request` events, you can configure a workflow to run when at least one file does not match `paths-ignore` or at least one modified file matches the configured `paths`. Path filters are not evaluated for pushes to tags.\n\nThe `paths-ignore` and `paths` keywords accept glob patterns that use the `*` and `**` wildcard characters to match more than one path name. For more information, see the https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet.",
-                  "uniqueItems": true
+                {
+                  "type": "null"
                 }
-              }
+              ]
             }
           },
           "additionalProperties": false

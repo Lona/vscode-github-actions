@@ -1,5 +1,9 @@
 # Change Log
 
+## **2.2.2**
+
+- The value of an event can also be `null`
+
 ## **2.2.1**
 
 - Links don't actually work properly
