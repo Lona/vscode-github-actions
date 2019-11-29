@@ -1,0 +1,26 @@
+name: "Lona GitHub Action"
+description: "A Github Action to check if Lona can run on the repo and upload a documentation website to Lona."
+author: "Mathieu Dutour"
+outputs:
+  upload_url:
+    description: "The URL to upload the docs to."
+  lona_organization_id:
+    description: "The id of the Lona organization this repo is part of."
+  deployment_id:
+    description: "The id of the GitHub deployment that was started by this action."
+  output_folder:
+    description: "The folder that will get deployed to Lona's servers."
+inputs:
+  github_token:
+    description: "Required for Lona to check the permissions."
+    required: true
+runs:
+  using: "node12"
+  main: "lib/main.js"
+  post: "lib/post.js"
+  post-if: always()
+  # env:
+  #   WORKFLOW_SUCCEEDED: ${{ job.status == 'Success' }}
+branding:
+  icon: "upload-cloud"
+  color: "red"

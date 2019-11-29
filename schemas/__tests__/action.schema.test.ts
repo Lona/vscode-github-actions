@@ -6,16 +6,16 @@ import * as path from "path";
 expect.extend(matchers);
 
 const schema = yaml.safeLoad(
-  fs.readFileSync(path.join(__dirname, "../workflow.schema.json"), "utf8")
+  fs.readFileSync(path.join(__dirname, "../action.schema.json"), "utf8")
 );
 
 test("workflow schema is valid", () => {
   expect(schema).toBeValidSchema();
 });
 
-fs.readdirSync(path.join(__dirname, "./workflow-cases")).forEach(file => {
+fs.readdirSync(path.join(__dirname, "./action-cases")).forEach(file => {
   const testCase = yaml.safeLoad(
-    fs.readFileSync(path.join(__dirname, "./workflow-cases", file), "utf8")
+    fs.readFileSync(path.join(__dirname, "./action-cases", file), "utf8")
   );
 
   test(file + " should be a valid workflow", () => {
