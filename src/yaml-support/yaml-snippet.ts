@@ -13,7 +13,7 @@ import {
 import { SNIPPETS_ROOT_PATH } from "./yaml-constant";
 
 /// Internal representation of a yaml code snippet corresponding to CompletionItemProvider
-export interface CodeSnippet {
+interface ICodeSnippet {
   readonly name: string;
   readonly label: string;
   readonly description: string;
@@ -25,7 +25,7 @@ export interface CodeSnippet {
  */
 export class YamlCompletionProvider implements CompletionItemProvider {
   // Storing all loaded yaml code snippets from snippets folder
-  private snippets: CodeSnippet[] = [];
+  private snippets: ICodeSnippet[] = [];
 
   // Default constructor
   public constructor() {
@@ -58,13 +58,13 @@ export class YamlCompletionProvider implements CompletionItemProvider {
   }
 
   // Filter all internal code snippets using the parameter word
-  private filterCodeSnippets(word: string): CodeSnippet[] {
+  private filterCodeSnippets(word: string): ICodeSnippet[] {
     const searcher = new Fuse(this.snippets, { keys: ["name"] });
     return searcher.search(word.toLowerCase());
   }
 
   // Parse a yaml snippet file into a CodeSnippet
-  private readYamlCodeSnippet(filename: string): CodeSnippet {
-    return <CodeSnippet>safeLoad(readFileSync(filename, "utf-8"));
+  private readYamlCodeSnippet(filename: string): ICodeSnippet {
+    return safeLoad(readFileSync(filename, "utf-8")) as ICodeSnippet;
   }
 }

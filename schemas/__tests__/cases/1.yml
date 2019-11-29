@@ -1,0 +1,20 @@
+name: test
+on: push
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7]
+        version_combinations:
+          [
+            { "django": 1.11, "cms": 3.4 },
+            { "django": 1.11, "cms": 3.5 },
+            { "django": 1.11, "cms": 3.6 },
+            { "django": 1.11, "cms": 3.7 },
+            { "django": "2.0", "cms": 3.6 },
+            { "django": "2.0", "cms": 3.7 },
+            { "django": 2.1, "cms": 3.7 },
+            { "django": 2.1, "cms": 3.6 },
+            { "django": 2.2, "cms": 3.7 },
+          ]

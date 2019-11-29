@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "id": "https://github.com/Lona/vscode-github-actions/schemas/workflow.schema.json",
   "title": "GitHub Action Workflow",
   "description": "The schema for a GitHub Action Workflow. For more information, see https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions.",

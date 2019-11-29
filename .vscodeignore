@@ -4,3 +4,8 @@ out/test/**
 out/**/*.map
 src/**
 tsconfig.json
+**/__tests__/**/*.+(ts|tsx|js)
+**/?(*.)+(spec|test).+(ts|tsx|js)
+types/**
+jest.config.js
+tslint.json
