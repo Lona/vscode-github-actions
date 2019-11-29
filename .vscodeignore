@@ -9,3 +9,4 @@ tsconfig.json
 types/**
 jest.config.js
 tslint.json
+.github/**
