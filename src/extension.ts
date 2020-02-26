@@ -39,21 +39,24 @@ export async function activate(context: ExtensionContext) {
   }, this);
 }
 
-async function addSchemasToConfig() {
-  const config = workspace
+function getConfig() {
+  return workspace
     .getConfiguration()
     .inspect(YAML_SCHEMA_CONFIG_NAME_OF_VSCODE_YAML_EXTENSION);
+}
+
+async function addSchemasToConfig() {
   await addSchemaToConfigAtScope(
     WORKFLOW_SCHEMA_FILE,
     WORKFLOW_FILE_GLOBAL_PATTERN,
     ConfigurationTarget.Global,
-    config.globalValue
+    getConfig().globalValue
   );
   await addSchemaToConfigAtScope(
     ACTION_SCHEMA_FILE,
     ACTION_FILE_GLOBAL_PATTERN,
     ConfigurationTarget.Global,
-    config.globalValue
+    getConfig().globalValue
   );
 }
 

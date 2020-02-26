@@ -31,7 +31,6 @@ async function activateYamlExtension(): Promise<{
 }> {
   const ext: Extension<any> = extensions.getExtension(VSCODE_YAML_EXTENSION_ID);
   if (!ext) {
-    const commandOption = "missing-dependecy";
     window.showWarningMessage(
       "Please install 'YAML Support by Red Hat' via the Extensions pane."
     );
