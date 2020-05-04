@@ -2,7 +2,7 @@
   "name": "vscode-github-actions",
   "displayName": "Github Actions",
   "description": "YAML schema validation and auto-completion for GitHub Actions.",
-  "version": "2.2.7",
+  "version": "3.0.0",
   "publisher": "me-dutour-mathieu",
   "engines": {
     "vscode": "^1.25.0"
