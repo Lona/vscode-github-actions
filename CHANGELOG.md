@@ -1,5 +1,9 @@
 # Change Log
 
+## **3.0.0**
+
+- `redhat.vscode-yaml` already defines schemas for the workflows and actions so we just defer to them instead of conflicting.
+
 ## **2.2.2**
 
 - The value of an event can also be `null`
