@@ -1,21 +1,5 @@
-import {
-  ConfigurationTarget,
-  ExtensionContext,
-  languages,
-  window,
-  workspace
-} from "vscode";
-import {
-  ACTION_FILE_GLOBAL_PATTERN,
-  ACTION_SCHEMA_FILE,
-  WORKFLOW_FILE_GLOBAL_PATTERN,
-  WORKFLOW_SCHEMA_FILE,
-  YAML_SCHEMA_CONFIG_NAME_OF_VSCODE_YAML_EXTENSION
-} from "./yaml-support/yaml-constant";
-import {
-  addSchemaToConfigAtScope,
-  registerYamlSchemaSupport
-} from "./yaml-support/yaml-schema";
+import { ExtensionContext, languages, window } from "vscode";
+import { registerYamlSchemaSupport } from "./yaml-support/yaml-schema";
 import { YamlCompletionProvider } from "./yaml-support/yaml-snippet";
 
 export const output = window.createOutputChannel("vscode-github-actions");
@@ -30,34 +14,12 @@ export async function activate(context: ExtensionContext) {
     languages.registerCompletionItemProvider(
       "yaml",
       new YamlCompletionProvider()
-    )
+    ),
   ];
-  await addSchemasToConfig();
   await registerYamlSchemaSupport();
-  subscriptions.forEach(element => {
+  subscriptions.forEach((element) => {
     context.subscriptions.push(element);
   }, this);
-}
-
-function getConfig() {
-  return workspace
-    .getConfiguration()
-    .inspect(YAML_SCHEMA_CONFIG_NAME_OF_VSCODE_YAML_EXTENSION);
-}
-
-async function addSchemasToConfig() {
-  await addSchemaToConfigAtScope(
-    WORKFLOW_SCHEMA_FILE,
-    WORKFLOW_FILE_GLOBAL_PATTERN,
-    ConfigurationTarget.Global,
-    getConfig().globalValue
-  );
-  await addSchemaToConfigAtScope(
-    ACTION_SCHEMA_FILE,
-    ACTION_FILE_GLOBAL_PATTERN,
-    ConfigurationTarget.Global,
-    getConfig().globalValue
-  );
 }
 
 export function deactivate() {
