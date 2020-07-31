@@ -1,6 +1,6 @@
 {
   "name": "vscode-github-actions",
-  "displayName": "Github Actions",
+  "displayName": "GitHub Actions",
   "description": "YAML schema validation and auto-completion for GitHub Actions.",
   "version": "3.0.0",
   "publisher": "me-dutour-mathieu",
